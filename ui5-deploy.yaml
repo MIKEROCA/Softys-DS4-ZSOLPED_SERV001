@@ -1,0 +1,25 @@
+# yaml-language-server: $schema=https://sap.github.io/ui5-tooling/schema/ui5.yaml.json
+
+specVersion: "3.1"
+metadata:
+  name: zsolped
+type: application
+builder:
+  resources:
+    excludes:
+      - /test/**
+      - /localService/**
+  customTasks:
+    - name: deploy-to-abap
+      afterTask: generateCachebusterInfo
+      configuration:
+        target:
+          url: http://10.4.2.43:8000
+          client: '400'
+        app:
+          name: ZSOLPED_SERV001
+          description: ZSOLPED_SERV001
+          package: ZFIORI
+          transport: DS4K905220
+        exclude:
+          - /test/

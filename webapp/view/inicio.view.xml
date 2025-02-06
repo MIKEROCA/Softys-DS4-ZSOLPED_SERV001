@@ -1,0 +1,60 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml" controllerName="zsolped.controller.inicio">
+  <sap.m.semantic:FullscreenPage xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:sap.m.semantic="sap.m.semantic" title="Resumen SOLPED" id="__page1" showNavButton="true" navButtonPress
+="backbutton" showFooter="false">
+    <sap.m.semantic:content>
+      <Table noDataText="No existen documentos" id="table_res" items="{ path: '/TiSolpedResumenSet'}" growing="true" growingTriggerText="Mostras mas..." width="auto" backgroundDesign="Solid" fixedLayout="false">
+        <items>
+          <ColumnListItem id="__item0" type="Navigation" press="onpress">
+            <cells>
+              <Text text="{TPO_DOC}" id="__text5"/>
+              <Text text="{COD_LIB}" id="__text6"/>
+              <Text text="{FRGCT}" id="__text88"/>
+              <Text text="{CANTIDAD}" id="__text7"/></cells>
+          </ColumnListItem>
+        </items>
+        <columns>
+          <Column id="__column0">
+            <header>
+              <Label text="Tipo Documento" id="__label0"/>
+            </header>
+            <customData>
+              <sap.ui.core:CustomData xmlns:sap.ui.core="sap.ui.core" key="TextoVar" value="Tipo Doc."/>
+              <sap.ui.core:CustomData xmlns:sap.ui.core="sap.ui.core" key="Phone" value="true"/>
+              <sap.ui.core:CustomData xmlns:sap.ui.core="sap.ui.core" key="Group" value="F"/>
+            </customData>
+          </Column>
+          <Column id="__column1">
+            <header>
+              <Label text="Código Liberación" id="__label1"/>
+            </header>
+            <customData>
+              <sap.ui.core:CustomData xmlns:sap.ui.core="sap.ui.core" key="TextoVar" value="C.Lib"/>
+              <sap.ui.core:CustomData xmlns:sap.ui.core="sap.ui.core" key="Phone" value="true"/>
+              <sap.ui.core:CustomData xmlns:sap.ui.core="sap.ui.core" key="Group" value="A"/>
+            </customData>
+          </Column>
+          <Column id="__column88">
+            <header>
+              <Label text="Descripción Código Liberación" id="__label81"/>
+            </header>
+            <customData>
+              <sap.ui.core:CustomData xmlns:sap.ui.core="sap.ui.core" key="TextoVar" value="Descripción"/>
+              <sap.ui.core:CustomData xmlns:sap.ui.core="sap.ui.core" key="Phone" value="true"/>
+              <sap.ui.core:CustomData xmlns:sap.ui.core="sap.ui.core" key="Group" value="A"/>
+            </customData>
+          </Column>
+          <Column id="__column2">
+            <header>
+              <Label text="Cantidad" id="__label2"/>
+            </header>
+            <customData>
+              <sap.ui.core:CustomData xmlns:sap.ui.core="sap.ui.core" key="TextoVar" value="Cant."/>
+              <sap.ui.core:CustomData xmlns:sap.ui.core="sap.ui.core" key="Phone" value="true"/>
+              <sap.ui.core:CustomData xmlns:sap.ui.core="sap.ui.core" key="Group" value="A"/>
+            </customData>
+          </Column>
+        </columns>
+      </Table>
+    </sap.m.semantic:content>
+  </sap.m.semantic:FullscreenPage>
+</mvc:View>

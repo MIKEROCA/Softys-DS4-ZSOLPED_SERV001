@@ -1,0 +1,48 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout">
+	<Dialog id="VariantChange" busy="false" busyIndicatorDelay="1000" visible="true" fieldGroupIds="[]" icon="" title="Modificar Variante" showHeader="true" type="Standard" beforeOpen="onBeforOpen" afterClose="onAfterClose">
+		<tooltip/>
+		<!-- sap.ui.core.TooltipBase -->
+		<customData/>
+		<!-- sap.ui.core.CustomData -->
+		<layoutData/>
+		<!-- sap.ui.core.LayoutData -->
+		<dependents/>
+		<!-- sap.ui.core.Control -->
+		<!-- sap.ui.core.Control -->
+		<subHeader/>
+		<!-- sap.m.IBar -->
+		<customHeader/>
+		<!-- sap.m.IBar -->
+		<beginButton/>
+		<!-- sap.m.Button -->
+		<endButton/>
+		<!-- sap.m.Button -->
+		<buttons>
+			<Button text="Aceptar" width="auto" type="Accept" press="onAceptarVariant"/>
+			<Button text="Cancelar" width="auto" type="Reject" press="onCerrarVariant"/>
+			<Button text="Guardar" width="auto" press="onGuardarVariant" type="Emphasized"/>
+		</buttons>
+		<!-- sap.m.Button -->
+		<content>
+
+			<ComboBox id="VariantesC" items="{/VariantesSet}" selectionChange="onVariantesChange" placeholder="Seleccione una variante">
+				<items>
+					<core:ListItem text="{Texto}" key="{Variante}"/>
+				</items>
+			</ComboBox>
+			<Button text="Fijar Variante Predefinida" width="auto" type="Emphasized" press="onFijarVariante"/>
+			<List noDataText="Drop list items here" id="VariantList" items="{Variante>/}" mode="MultiSelect" includeItemInSelection="true" rememberSelections="false">
+				<items>
+					<StandardListItem type="Active" title="{Variante>ColumnText}" selected="{Variante>Visible}"/></items>
+				<headerToolbar>
+					<Toolbar width="100%">
+						<content>
+							<Button width="auto" icon="sap-icon://multiselect-all" tooltip="Marcar / Desmarcar Todos" press="onSelectAll"/>
+							<SearchField xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns="sap.m" width="100%" placeholder="Buscar" search="onSearchVariant"/>
+						</content>
+					</Toolbar>
+				</headerToolbar>
+			</List>
+		</content>
+	</Dialog>
+</core:FragmentDefinition>

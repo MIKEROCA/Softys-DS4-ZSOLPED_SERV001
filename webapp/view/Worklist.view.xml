@@ -1,0 +1,464 @@
+<mvc:View xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:semantic="sap.m.semantic"
+	controllerName="zsolped.controller.Worklist">
+	<semantic:FullscreenPage id="page" navButtonPress="onNavBack" showNavButton="true" title="{i18n>worklistViewTitle}" titleLevel="H1">
+		<semantic:content>
+			<FacetFilter id="idFacetFilter" type="Simple" showPersonalization="true" showReset="true" reset="handleFacetFilterReset"
+				confirm="handleConfirm">
+				<lists>
+					<FacetFilterList title="Sol. Pedido" retainListSequence="true" sequence="1" growing="false" selectionChange="oncodChange" key="preq_no"
+						mode="MultiSelect" items="{/FiltrosSet}" id="preq_no">
+						<items>
+							<FacetFilterItem text="{preq_no}" key="{preq_no}" selected="false"/>
+						</items>
+					</FacetFilterList>
+					<FacetFilterList title="Pos. Sol. Pedido" retainListSequence="true" sequence="2" growing="false" selectionChange="oncodChange"
+						key="preq_item" mode="MultiSelect" items="{/FiltrosSet}" id="preq_item">
+						<items>
+							<FacetFilterItem text="{preq_item}" key="{preq_item}" selected="false"/>
+						</items>
+					</FacetFilterList>
+					<FacetFilterList title="Material" retainListSequence="true" sequence="3" growing="false" selectionChange="oncodChange" key="material"
+						mode="MultiSelect" items="{/FiltrosSet}" id="material">
+						<items>
+							<FacetFilterItem text="{material}" selected="false"/>
+						</items>
+					</FacetFilterList>
+					<!--<FacetFilterList title="Cantidad" retainListSequence="true" sequence="4" growing="false" selectionChange="oncodChange" key="cantidad" mode="MultiSelect" items="{/FiltrosSet}" id="cantidad">-->
+					<!--	<items>-->
+					<!--		<FacetFilterItem text="{cantidad}" selected="false"/>-->
+					<!--	</items>-->
+					<!--</FacetFilterList>-->
+					<FacetFilterList title="Descripción" retainListSequence="true" sequence="4" growing="false" mode="MultiSelect" items="{/FiltrosSet}"
+						id="descripcion" key="descripcion" selectionChange="onHasChange">
+						<items>
+							<FacetFilterItem text="{descripcion}" selected="false"/>
+						</items>
+					</FacetFilterList>
+					<FacetFilterList title="Grupo Compras" retainListSequence="true" sequence="5" growing="false" mode="MultiSelect" items="{/FiltrosSet}"
+						id="grupo_compras" key="grupo_compras" selectionChange="onHasChange">
+						<items>
+							<FacetFilterItem text="{grupo_compras}" selected="false"/>
+						</items>
+					</FacetFilterList>
+					<FacetFilterList title="Usuario" retainListSequence="true" sequence="6" growing="false" selectionChange="onHasChange" mode="MultiSelect"
+						items="{/FiltrosSet}" id="usuario" key="usuario">
+						<items>
+							<FacetFilterItem text="{usuario}" selected="false"/>
+						</items>
+					</FacetFilterList>
+					<FacetFilterList title="Solicitante" retainListSequence="true" sequence="7" growing="false" selectionChange="oncodChange" mode="MultiSelect"
+						items="{/FiltrosSet}" id="solicitante" key="solicitante">
+						<items>
+							<FacetFilterItem text="{solicitante}" selected="false"/>
+						</items>
+					</FacetFilterList>
+					<FacetFilterList title="Fecha Solicitud" retainListSequence="true" sequence="8" growing="false" selectionChange="oncodChange"
+						mode="MultiSelect" items="{/FiltrosSet}" id="fecha_sol" key="fecha_sol">
+						<items>
+							<FacetFilterItem text="{fecha_sol}" selected="false"/>
+						</items>
+					</FacetFilterList>
+					<FacetFilterList title="Centro" retainListSequence="true" sequence="9" growing="false" selectionChange="oncodChange" mode="MultiSelect"
+						items="{/FiltrosSet}" id="centro" key="centro">
+						<items>
+							<FacetFilterItem text="{centro}" selected="false"/>
+						</items>
+					</FacetFilterList>
+					<FacetFilterList title="Org. Compras" retainListSequence="true" sequence="10" growing="false" selectionChange="oncodChange"
+						mode="MultiSelect" items="{/FiltrosSet}" id="org_compras" key="org_compras">
+						<items>
+							<FacetFilterItem text="{org_compras}" selected="false"/>
+						</items>
+					</FacetFilterList>
+					<FacetFilterList title="Grupo Lib." retainListSequence="true" sequence="11" growing="false" selectionChange="oncodChange" mode="MultiSelect"
+						items="{/FiltrosSet}" id="rel_cod" key="rel_cod">
+						<items>
+							<FacetFilterItem text="{rel_cod}" selected="false"/>
+						</items>
+					</FacetFilterList>
+					<FacetFilterList title="Estrategia Liberación" retainListSequence="true" sequence="12" growing="false" selectionChange="oncodChange"
+						mode="MultiSelect" items="{/FiltrosSet}" id="rel_strat" key="rel_strat">
+						<items>
+							<FacetFilterItem text="{rel_strat}" selected="false"/>
+						</items>
+					</FacetFilterList>
+					<FacetFilterList title="Descripción Estrategia Liberación" retainListSequence="true" sequence="13" growing="false"
+						selectionChange="oncodChange" mode="MultiSelect" items="{/FiltrosSet}" id="frgxt" key="frgxt">
+						<items>
+							<FacetFilterItem text="{frgxt}" selected="false"/>
+						</items>
+					</FacetFilterList>
+					<FacetFilterList title="Proveedor Fijo" retainListSequence="true" sequence="14" growing="false"
+						selectionChange="oncodChange" mode="MultiSelect" items="{/FiltrosSet}" id="provFijo" key="provFijo">
+						<items>
+							<FacetFilterItem text="{provFijo} - {descProvFijo}" selected="false"/>
+						</items>
+					</FacetFilterList>
+					<FacetFilterList title="Proveedor Deseado" retainListSequence="true" sequence="15" growing="false"
+						selectionChange="oncodChange" mode="MultiSelect" items="{/FiltrosSet}" id="provDeseado" key="provDeseado">
+						<items>
+							<FacetFilterItem text="{provDeseado} - {descProvDeseado}" selected="false"/>
+						</items>
+					</FacetFilterList>
+				</lists>
+			</FacetFilter>
+			<Table id="table" class="sapUiResponsiveMargin" items="{ path: '/TiSolpedSet', sorter: { path: 'preq_no', descending: false } }"
+				noDataText="{worklistView>/tableNoDataText}" busyIndicatorDelay="{worklistView>/tableBusyDelay}" growing="true"
+				updateFinished="onUpdateFinished" mode="MultiSelect" width="" growingThreshold="20" growingTriggerText="Mostrar mas...">
+				<headerToolbar>
+					<Toolbar>
+						<OverflowToolbar width="100%" id="__toolbar2" press="onSortPressed">
+							<content>
+								<Title xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:semantic="sap.m.semantic" xmlns="sap.m" id="tableHeader"
+									text="{worklistView>/worklistTableTitle}" level="H6" titleStyle="H6"/>
+								<ToolbarSpacer xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:semantic="sap.m.semantic" xmlns="sap.m" id="__spacer2"/>
+								<ComboBox xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" xmlns="sap.m" id="VariantesCC" modelContextChange="onVariantesCCMC"
+									items="{/VariantesSet}" selectionChange="onVariantesChange" placeholder="Seleccione una variante">
+									<items>
+										<core:ListItem xmlns:core="sap.ui.core" text="{Texto}" key="{Variante}" id="__item15-VariantesCC-0"/>
+									</items>
+								</ComboBox>
+								<SearchField xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:semantic="sap.m.semantic" xmlns="sap.m" id="searchField"
+									tooltip="{i18n>worklistSearchTooltip}" search="onSearch" width="auto"/>
+								<Button width="50px" id="__button1" icon="sap-icon://sort" press="onSortPressed"/>
+								<Button width="auto" id="__button00" icon="sap-icon://action-settings" press="onVariantChange" tooltip="Modificar Variante"/>
+							</content>
+						</OverflowToolbar>
+						<content/>
+					</Toolbar>
+				</headerToolbar>
+				<columns>
+					<Column id="nameColumn" demandPopin="true" width="auto">
+						<Text text="{i18n>COL1}" id="nameColumnTitle"/>
+						<customData>
+							<sap.ui.core:CustomData xmlns:sap.ui.core="sap.ui.core" key="TextoVar" value="N° Sol. Pedido"/>
+							<sap.ui.core:CustomData xmlns:sap.ui.core="sap.ui.core" key="Desktop" value="true"/>
+							<sap.ui.core:CustomData xmlns:sap.ui.core="sap.ui.core" key="Tablet" value="true"/>
+							<sap.ui.core:CustomData xmlns:sap.ui.core="sap.ui.core" key="Phone" value="true"/>
+							<sap.ui.core:CustomData xmlns:sap.ui.core="sap.ui.core" key="Group" value="A"/>
+						</customData>
+					</Column>
+					<Column xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" xmlns="sap.m" id="nameColumn_copy" demandPopin="true" hAlign="Left"
+						popinHAlign="Left">
+						<Text text="{i18n>COL2}" id="nameColumnTitle_copy"/>
+						<customData>
+							<sap.ui.core:CustomData xmlns:sap.ui.core="sap.ui.core" key="TextoVar" value="Pos. Sol. Pedido"/>
+							<sap.ui.core:CustomData xmlns:sap.ui.core="sap.ui.core" key="Desktop" value="true"/>
+							<sap.ui.core:CustomData xmlns:sap.ui.core="sap.ui.core" key="Tablet" value="true"/>
+							<sap.ui.core:CustomData xmlns:sap.ui.core="sap.ui.core" key="Phone" value="true"/>
+							<sap.ui.core:CustomData xmlns:sap.ui.core="sap.ui.core" key="Group" value="A"/>
+						</customData>
+					</Column>
+					<Column xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" xmlns="sap.m" id="__column4" demandPopin="true" width="auto">
+						<header>
+							<Text text="{i18n>COL3}" id="__text21"/>
+						</header>
+						<customData>
+							<sap.ui.core:CustomData xmlns:sap.ui.core="sap.ui.core" key="TextoVar" value="Material"/>
+							<sap.ui.core:CustomData xmlns:sap.ui.core="sap.ui.core" key="Desktop" value="true"/>
+							<sap.ui.core:CustomData xmlns:sap.ui.core="sap.ui.core" key="Tablet" value="true"/>
+							<sap.ui.core:CustomData xmlns:sap.ui.core="sap.ui.core" key="Group" value="A"/>
+						</customData>
+					</Column>
+					<Column xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" id="__column8" hAlign="Right" demandPopin="true"
+						width="auto">
+						<header>
+							<Text id="__text29" text="{i18n>COL5}"/>
+						</header>
+						<customData>
+							<sap.ui.core:CustomData xmlns:sap.ui.core="sap.ui.core" key="TextoVar" value="Cantidad"/>
+							<sap.ui.core:CustomData xmlns:sap.ui.core="sap.ui.core" key="Desktop" value="true"/>
+							<sap.ui.core:CustomData xmlns:sap.ui.core="sap.ui.core" key="Tablet" value="true"/>
+							<sap.ui.core:CustomData xmlns:sap.ui.core="sap.ui.core" key="Phone" value="true"/>
+							<sap.ui.core:CustomData xmlns:sap.ui.core="sap.ui.core" key="Group" value="A"/>
+						</customData>
+					</Column>
+					<Column xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" id="__column878" hAlign="Right" demandPopin="true"
+						width="auto">
+						<header>
+							<Text id="__text2966" text="{i18n>COL55}"/>
+						</header>
+						<customData>
+							<sap.ui.core:CustomData xmlns:sap.ui.core="sap.ui.core" key="TextoVar" value="Monto"/>
+							<sap.ui.core:CustomData xmlns:sap.ui.core="sap.ui.core" key="Desktop" value="true"/>
+							<sap.ui.core:CustomData xmlns:sap.ui.core="sap.ui.core" key="Tablet" value="true"/>
+							<sap.ui.core:CustomData xmlns:sap.ui.core="sap.ui.core" key="Phone" value="true"/>
+							<sap.ui.core:CustomData xmlns:sap.ui.core="sap.ui.core" key="Group" value="A"/>
+						</customData>
+					</Column>
+					<Column xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" id="__column8678" hAlign="Right" demandPopin="true"
+						width="auto">
+						<header>
+							<Text id="__text24966" text="{i18n>COL555}"/>
+						</header>
+						<customData>
+							<sap.ui.core:CustomData xmlns:sap.ui.core="sap.ui.core" key="TextoVar" value="Moneda"/>
+							<sap.ui.core:CustomData xmlns:sap.ui.core="sap.ui.core" key="Desktop" value="true"/>
+							<sap.ui.core:CustomData xmlns:sap.ui.core="sap.ui.core" key="Tablet" value="true"/>
+							<sap.ui.core:CustomData xmlns:sap.ui.core="sap.ui.core" key="Phone" value="true"/>
+							<sap.ui.core:CustomData xmlns:sap.ui.core="sap.ui.core" key="Group" value="A"/>
+						</customData>
+					</Column>
+					<Column xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" xmlns="sap.m" minScreenWidth="500px" popinDisplay="WithoutHeader"
+						popinHAlign="Left" width="auto" hAlign="Right" demandPopin="true">
+						<Text text="{i18n>COL6}" id="unitNumberColumnTitle_copy"/>
+						<customData>
+							<sap.ui.core:CustomData xmlns:sap.ui.core="sap.ui.core" key="TextoVar" value="Descripción SOLPED"/>
+							<sap.ui.core:CustomData xmlns:sap.ui.core="sap.ui.core" key="Desktop" value="true"/>
+							<sap.ui.core:CustomData xmlns:sap.ui.core="sap.ui.core" key="Tablet" value="true"/>
+							<sap.ui.core:CustomData xmlns:sap.ui.core="sap.ui.core" key="Group" value="A"/>
+						</customData>
+					</Column>
+					<Column id="__column0" demandPopin="true" hAlign="Center" minScreenWidth="500px" popinDisplay="WithoutHeader" width="auto">
+						<header>
+							<Text text="{i18n>COL7}" id="__text10"/>
+						</header>
+						<customData>
+							<sap.ui.core:CustomData xmlns:sap.ui.core="sap.ui.core" key="TextoVar" value="Grupo Compras"/>
+							<sap.ui.core:CustomData xmlns:sap.ui.core="sap.ui.core" key="Desktop" value="true"/>
+							<sap.ui.core:CustomData xmlns:sap.ui.core="sap.ui.core" key="Tablet" value="true"/>
+							<sap.ui.core:CustomData xmlns:sap.ui.core="sap.ui.core" key="Group" value="A"/>
+						</customData>
+					</Column>
+					<Column id="__column111" demandPopin="true">
+						<header>
+							<Text text="{i18n>COL77}" id="__text155"/>
+						</header>
+						<customData>
+							<sap.ui.core:CustomData xmlns:sap.ui.core="sap.ui.core" key="TextoVar" value="Descripción Grupo Compras"/>
+							<sap.ui.core:CustomData xmlns:sap.ui.core="sap.ui.core" key="Desktop" value="true"/>
+							<sap.ui.core:CustomData xmlns:sap.ui.core="sap.ui.core" key="Tablet" value="true"/>
+							<sap.ui.core:CustomData xmlns:sap.ui.core="sap.ui.core" key="Group" value="A"/>
+						</customData>
+					</Column>
+					<Column id="__column1" demandPopin="true">
+						<header>
+							<Text text="{i18n>COL8}" id="__text15"/>
+						</header>
+						<customData>
+							<sap.ui.core:CustomData xmlns:sap.ui.core="sap.ui.core" key="TextoVar" value="Usuario"/>
+							<sap.ui.core:CustomData xmlns:sap.ui.core="sap.ui.core" key="Desktop" value="true"/>
+							<sap.ui.core:CustomData xmlns:sap.ui.core="sap.ui.core" key="Tablet" value="true"/>
+							<sap.ui.core:CustomData xmlns:sap.ui.core="sap.ui.core" key="Group" value="A"/>
+						</customData>
+					</Column>
+					<Column id="__column11234" demandPopin="true">
+						<header>
+							<Text text="{i18n>COL88}" id="__text15543"/>
+						</header>
+						<customData>
+							<sap.ui.core:CustomData xmlns:sap.ui.core="sap.ui.core" key="TextoVar" value="Nombre Usuario"/>
+							<sap.ui.core:CustomData xmlns:sap.ui.core="sap.ui.core" key="Desktop" value="true"/>
+							<sap.ui.core:CustomData xmlns:sap.ui.core="sap.ui.core" key="Tablet" value="true"/>
+							<sap.ui.core:CustomData xmlns:sap.ui.core="sap.ui.core" key="Group" value="A"/>
+						</customData>
+					</Column>
+					<Column id="__column2" demandPopin="true" minScreenWidth="500px" popinDisplay="WithoutHeader" width="auto">
+						<header>
+							<Text text="{i18n>COL9}" id="__text17"/>
+						</header>
+						<customData>
+							<sap.ui.core:CustomData xmlns:sap.ui.core="sap.ui.core" key="TextoVar" value="Solicitante"/>
+							<sap.ui.core:CustomData xmlns:sap.ui.core="sap.ui.core" key="Phone" value="true"/>
+							<sap.ui.core:CustomData xmlns:sap.ui.core="sap.ui.core" key="Desktop" value="true"/>
+							<sap.ui.core:CustomData xmlns:sap.ui.core="sap.ui.core" key="Tablet" value="true"/>
+							<sap.ui.core:CustomData xmlns:sap.ui.core="sap.ui.core" key="Group" value="A"/>
+						</customData>
+					</Column>
+					<Column id="__column3" popinHAlign="Right" vAlign="Top" demandPopin="true" popinDisplay="Inline" width="auto">
+						<header>
+							<Text text="{i18n>COL10}" id="__text19"/>
+						</header>
+						<customData>
+							<sap.ui.core:CustomData xmlns:sap.ui.core="sap.ui.core" key="TextoVar" value="Fecha Solicitud"/>
+							<sap.ui.core:CustomData xmlns:sap.ui.core="sap.ui.core" key="Desktop" value="true"/>
+							<sap.ui.core:CustomData xmlns:sap.ui.core="sap.ui.core" key="Tablet" value="true"/>
+							<sap.ui.core:CustomData xmlns:sap.ui.core="sap.ui.core" key="Group" value="A"/>
+						</customData>
+					</Column>
+					<Column xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:semantic="sap.m.semantic" xmlns="sap.m" id="__column3_copy"
+						popinHAlign="Right" vAlign="Top" demandPopin="true" popinDisplay="Inline" width="auto" hAlign="Center">
+						<header>
+							<Text text="{i18n>COL11}" id="__text19_copy"/>
+						</header>
+						<customData>
+							<core:CustomData xmlns:sap.ui.core="sap.ui.core" key="TextoVar" value="Centro" id="__data48"/>
+							<sap.ui.core:CustomData xmlns:sap.ui.core="sap.ui.core" key="Desktop" value="true"/>
+							<sap.ui.core:CustomData xmlns:sap.ui.core="sap.ui.core" key="Tablet" value="true"/>
+							<core:CustomData xmlns:sap.ui.core="sap.ui.core" key="Group" value="A" id="__data49"/>
+						</customData>
+					</Column>
+					<Column xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:semantic="sap.m.semantic" xmlns="sap.m" id="__column33_copy"
+						popinHAlign="Right" vAlign="Top" demandPopin="true" popinDisplay="Inline" width="auto" hAlign="Center">
+						<header>
+							<Text text="{i18n>COL12}" id="__text199_copy"/>
+						</header>
+						<customData>
+							<core:CustomData xmlns:sap.ui.core="sap.ui.core" key="TextoVar" value="Org. Compras" id="__data488"/>
+							<sap.ui.core:CustomData xmlns:sap.ui.core="sap.ui.core" key="Desktop" value="true"/>
+							<sap.ui.core:CustomData xmlns:sap.ui.core="sap.ui.core" key="Tablet" value="true"/>
+							<core:CustomData xmlns:sap.ui.core="sap.ui.core" key="Group" value="A" id="__data499"/>
+						</customData>
+					</Column>
+					<Column xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:semantic="sap.m.semantic" xmlns="sap.m" id="__column34_copy"
+						popinHAlign="Right" vAlign="Top" demandPopin="true" popinDisplay="Inline" width="auto" hAlign="Center">
+						<header>
+							<Text text="{i18n>COL13}" id="__text198_copy"/>
+						</header>
+						<customData>
+							<core:CustomData xmlns:sap.ui.core="sap.ui.core" key="TextoVar" value="Grupo Lib." id="__data489"/>
+							<sap.ui.core:CustomData xmlns:sap.ui.core="sap.ui.core" key="Desktop" value="true"/>
+							<sap.ui.core:CustomData xmlns:sap.ui.core="sap.ui.core" key="Tablet" value="true"/>
+							<core:CustomData xmlns:sap.ui.core="sap.ui.core" key="Group" value="A" id="__data490"/>
+						</customData>
+					</Column>
+					<Column xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:semantic="sap.m.semantic" xmlns="sap.m" id="__column377_copy"
+						popinHAlign="Right" vAlign="Top" demandPopin="true" popinDisplay="Inline" hAlign="Center">
+						<header>
+							<Text text="{i18n>COL15}" id="__text159_copy"/>
+						</header>
+						<customData>
+							<core:CustomData xmlns:sap.ui.core="sap.ui.core" key="TextoVar" value="Estrat. Liberación" id="__data485"/>
+							<sap.ui.core:CustomData xmlns:sap.ui.core="sap.ui.core" key="Desktop" value="true"/>
+							<sap.ui.core:CustomData xmlns:sap.ui.core="sap.ui.core" key="Tablet" value="true"/>
+							<core:CustomData xmlns:sap.ui.core="sap.ui.core" key="Group" value="A" id="__data495"/>
+						</customData>
+					</Column>
+					<Column xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:semantic="sap.m.semantic" xmlns="sap.m" id="__column335_copy"
+						popinHAlign="Right" vAlign="Top" demandPopin="true" popinDisplay="Inline">
+						<header>
+							<Text text="{i18n>COL16}" id="__text196_copy"/>
+						</header>
+						<customData>
+							<core:CustomData xmlns:sap.ui.core="sap.ui.core" key="TextoVar" value="Descripción Estrat. Lib." id="__data438"/>
+							<sap.ui.core:CustomData xmlns:sap.ui.core="sap.ui.core" key="Desktop" value="true"/>
+							<sap.ui.core:CustomData xmlns:sap.ui.core="sap.ui.core" key="Tablet" value="true"/>
+							<core:CustomData xmlns:sap.ui.core="sap.ui.core" key="Group" value="A" id="__data4995"/>
+						</customData>
+					</Column>
+					<Column xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:semantic="sap.m.semantic" xmlns="sap.m" id="__column35_copy"
+						popinHAlign="Right" vAlign="Top" demandPopin="true" popinDisplay="Inline" width="auto" visible="false">
+						<header>
+							<Text text="{i18n>COL14}" id="__text898_copy" visible="false"/>
+						</header>
+						<customData>
+							<core:CustomData xmlns:sap.ui.core="sap.ui.core" key="TextoVar" value="Cod. Liberación" id="__data479"/>
+							<core:CustomData xmlns:sap.ui.core="sap.ui.core" key="Group" value="A" id="__data491"/>
+						</customData>
+					</Column>
+					<Column xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:semantic="sap.m.semantic" xmlns="sap.m" id="__column3199_provfijo"
+						popinHAlign="Right" vAlign="Top" demandPopin="true" popinDisplay="Inline" visible="false">
+						<header>
+							<Text text="Prov. Fijo" id="__text199_provFijo" visible="true"/>
+						</header>
+						<customData>
+							<core:CustomData xmlns:sap.ui.core="sap.ui.core" key="TextoVar" value="Prov.Fijo" id="__dafinpfijo"/>
+							<sap.ui.core:CustomData xmlns:sap.ui.core="sap.ui.core" key="Desktop" value="true"/>
+							<sap.ui.core:CustomData xmlns:sap.ui.core="sap.ui.core" key="Tablet" value="true"/>
+							<core:CustomData xmlns:sap.ui.core="sap.ui.core" key="Group" value="A" id="__data5finpfijo"/>
+						</customData>
+					</Column>
+					<Column xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:semantic="sap.m.semantic" xmlns="sap.m" id="__column3199_provdeseado"
+						popinHAlign="Right" vAlign="Top" demandPopin="true" popinDisplay="Inline" visible="false">
+						<header>
+							<Text text="Prov. Deseado" id="__text199_provDeseado" visible="true"/>
+						</header>
+						<customData>
+							<core:CustomData xmlns:sap.ui.core="sap.ui.core" key="TextoVar" value="Prov.Fijo" id="__dafinpdeseado"/>
+							<sap.ui.core:CustomData xmlns:sap.ui.core="sap.ui.core" key="Desktop" value="true"/>
+							<sap.ui.core:CustomData xmlns:sap.ui.core="sap.ui.core" key="Tablet" value="true"/>
+							<core:CustomData xmlns:sap.ui.core="sap.ui.core" key="Group" value="A" id="__data5finpdeseado"/>
+						</customData>
+					</Column>
+					<Column xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:semantic="sap.m.semantic" xmlns="sap.m" id="__column3199_cofanexo"
+						popinHAlign="Right" vAlign="Top" demandPopin="true" popinDisplay="Inline" visible="false">
+						<header>
+							<Text text="Anexos" id="__text199_cofanexo" visible="true"/>
+						</header>
+						<customData>
+							<core:CustomData xmlns:sap.ui.core="sap.ui.core" key="TextoVar" value="Anexos" id="__dafinpanexo"/>
+							<sap.ui.core:CustomData xmlns:sap.ui.core="sap.ui.core" key="Desktop" value="true"/>
+							<sap.ui.core:CustomData xmlns:sap.ui.core="sap.ui.core" key="Tablet" value="true"/>
+							<core:CustomData xmlns:sap.ui.core="sap.ui.core" key="Group" value="A" id="__data5finpanexo"/>
+						</customData>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem press="onPress" selected="false" type="Navigation">
+						<cells>
+							<ObjectIdentifier xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" xmlns="sap.m" title="{preq_no}"/>
+							<ObjectIdentifier xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" xmlns="sap.m" title="{preq_item}" id="__identifier1"/>
+							<ObjectIdentifier xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" xmlns="sap.m" title="{material}" id="__identifier2"/>
+							<ObjectIdentifier xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" xmlns="sap.m" title="{cantidad}" id="__identifier2_copy"/>
+							<ObjectNumber number="{ parts: [ {path: 'monto'}, {path: 'moneda'} ], formatter: '.formatter.numberUnit' }" state="{path: 'monto', formatter: '.formatter.priceState' }"
+								textAlign="Right"/>
+							<ObjectIdentifier xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" xmlns="sap.m" title="{moneda}" id="__identi3332"/>
+							<ObjectIdentifier xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" xmlns="sap.m" title="{descripcion}" id="__identifier2_copy2"/>
+							<ObjectIdentifier xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" xmlns="sap.m" title="{grupo_compras}" id="__identifier2_copy3"/>
+							<ObjectIdentifier xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" xmlns="sap.m" title="{grupo_comprast}"
+								id="__identifier2_copy3356"/>
+							<ObjectIdentifier xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" xmlns="sap.m" title="{usuario}" id="__identifier2_copy4"/>
+							<ObjectIdentifier xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" xmlns="sap.m" title="{nombre}" id="__idifier2_copy4"/>
+							<ObjectIdentifier xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" xmlns="sap.m" id="__identifier2_copy5" title="{solicitante}"/>
+							<ObjectIdentifier xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" xmlns="sap.m" id="__identifier3" title="{fecha_sol}"/>
+							<ObjectIdentifier xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" xmlns="sap.m" id="__identifier33" title="{centro}"/>
+							<ObjectIdentifier xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" xmlns="sap.m" id="__identifier44" title="{org_compras}"/>
+							<ObjectIdentifier xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" xmlns="sap.m" id="__identifier55" title="{rel_cod}"/>
+							<ObjectIdentifier xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" xmlns="sap.m" id="__identifier595" title="{rel_strat}"/>
+							<ObjectIdentifier xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" xmlns="sap.m" title="{frgxt}" id="__identifier445"/>
+							<ObjectIdentifier xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" xmlns="sap.m" id="__identifier66" title="{cod}"/>
+							<ObjectIdentifier xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" xmlns="sap.m" id="__identifierpfij" title="{provFijo} - {descProvFijo}"/>
+							<ObjectIdentifier xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" xmlns="sap.m" id="__identifierpdesea" title="{provDeseado} - {descProvDeseado}"/>
+							<Button icon="sap-icon://attachment" tooltip="Documentos Adjuntos" press="onDetalleAnexos" visible="{path: 'Anexos', formatter: '.formatter.visibleAnexos' }"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+			<Table noDataText="No se han liberado documentos" id="table2" items="{ path: '/TiSolpedReleaseSet'}" width="auto"
+				headerText="Detalle Liberación" headerDesign="Plain">
+				<items>
+					<ColumnListItem id="__item1">
+						<cells>
+							<Text text="{preq_no}" id="__text22"/>
+							<Text xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:semantic="sap.m.semantic" xmlns="sap.m" text="{preq_item}"
+								id="__text22_copy"/>
+							<ObjectStatus xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" id="__status0" icon="{icono}"/>
+							<Text text="{MESSAGE}" id="__text24"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+				<columns>
+					<Column id="__column5" demandPopin="true" hAlign="Left">
+						<header>
+							<Label text="Documento" id="__label0"/>
+						</header>
+					</Column>
+					<Column xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:semantic="sap.m.semantic" xmlns="sap.m" id="__column5_copy"
+						demandPopin="true" hAlign="Left">
+						<header>
+							<Label text="Posición" id="__label0_copy"/>
+						</header>
+					</Column>
+					<Column id="__column6" demandPopin="true" minScreenWidth="500px" popinDisplay="WithoutHeader" width="50px">
+						<header>
+							<Label id="__label1"/>
+						</header>
+					</Column>
+					<Column id="__column7" demandPopin="true" minScreenWidth="500px" hAlign="Left" popinDisplay="WithoutHeader">
+						<header>
+							<Label text="Resultado" id="__label2"/>
+						</header>
+					</Column>
+				</columns>
+			</Table>
+		</semantic:content>
+		<semantic:sendEmailAction>
+			<semantic:SendEmailAction id="shareEmail" press="onShareEmailPress" visible="false"/>
+		</semantic:sendEmailAction>
+		<semantic:customFooterContent>
+			<Button text="Excel" id="_download" type="Default" icon="sap-icon://download" press="onExportExcel"/>
+			<Button text="Liberar Seleccionadas" width="200px" id="__button0" type="Accept" icon="sap-icon://accept" press="liberar_sel"/>
+			<!-- <Button text="Guardar Variante" width="auto" id="__button8" icon="sap-icon://save" press="onGuardarVarianteEjec"/>  -->
+		</semantic:customFooterContent>
+	</semantic:FullscreenPage>
+</mvc:View>

@@ -1,0 +1,136 @@
+{
+    "resources": [
+        {
+            "name": ".che/project.json"
+        },
+        {
+            "name": ".gitignore"
+        },
+        {
+            "name": ".project.json"
+        },
+        {
+            "name": ".user.project.json"
+        },
+        {
+            "name": "Component-preload.js",
+            "merged": true
+        },
+        {
+            "name": "Component.js"
+        },
+        {
+            "name": "Gruntfile.js"
+        },
+        {
+            "name": "controller/App.controller.js"
+        },
+        {
+            "name": "controller/BaseController.js"
+        },
+        {
+            "name": "controller/ErrorHandler.js"
+        },
+        {
+            "name": "controller/NotFound.controller.js"
+        },
+        {
+            "name": "controller/Object.controller.js"
+        },
+        {
+            "name": "controller/Worklist.controller.js"
+        },
+        {
+            "name": "controller/inicio.controller.js"
+        },
+        {
+            "name": "dist"
+        },
+        {
+            "name": "i18n/i18n.properties",
+            "raw": "i18n/i18n.properties"
+        },
+        {
+            "name": "index.html"
+        },
+        {
+            "name": "localService/ZSOLPED_SERV_SRV/metadata.xml"
+        },
+        {
+            "name": "localService/metadata.xml"
+        },
+        {
+            "name": "localService/mockserver.js"
+        },
+        {
+            "name": "manifest.json"
+        },
+        {
+            "name": "model/GroupSortState.js"
+        },
+        {
+            "name": "model/formatter.js"
+        },
+        {
+            "name": "model/grouper.js"
+        },
+        {
+            "name": "model/models.js"
+        },
+        {
+            "name": "neo-app.json"
+        },
+        {
+            "name": "node_modules"
+        },
+        {
+            "name": "package-lock.json"
+        },
+        {
+            "name": "package.json"
+        },
+        {
+            "name": "resources.json",
+            "merged": true
+        },
+        {
+            "name": "sap-ui-cachebuster-info.json"
+        },
+        {
+            "name": "utils/VariantEjecHelper.js"
+        },
+        {
+            "name": "utils/VariantHelper.js"
+        },
+        {
+            "name": "view/App.view.xml"
+        },
+        {
+            "name": "view/NotFound.view.xml"
+        },
+        {
+            "name": "view/Nota.fragment.xml"
+        },
+        {
+            "name": "view/Nota2.fragment.xml"
+        },
+        {
+            "name": "view/Object.view.xml"
+        },
+        {
+            "name": "view/ObjectNotFound.view.xml"
+        },
+        {
+            "name": "view/Variant.fragment.xml"
+        },
+        {
+            "name": "view/VariantEjec.fragment.xml"
+        },
+        {
+            "name": "view/Worklist.view.xml"
+        },
+        {
+            "name": "view/inicio.view.xml"
+        }
+    ]
+}

@@ -1,0 +1,48 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout">
+	<Dialog id="VariantEjecChange" busy="false" busyIndicatorDelay="1000" visible="true" fieldGroupIds="[]" icon=""
+		title="Grabar Variante Ejecución" showHeader="true" type="Standard" beforeOpen="onBeforOpenVEj" afterClose="onAfterCloseEj">
+		<tooltip/>
+		<!-- sap.ui.core.TooltipBase -->
+		<customData/>
+		<!-- sap.ui.core.CustomData -->
+		<layoutData/>
+		<!-- sap.ui.core.LayoutData -->
+		<dependents/>
+		<!-- sap.ui.core.Control -->
+		<!-- sap.ui.core.Control -->
+		<subHeader/>
+		<!-- sap.m.IBar -->
+		<customHeader/>
+		<!-- sap.m.IBar -->
+		<beginButton/>
+		<!-- sap.m.Button -->
+		<endButton/>
+		<!-- sap.m.Button -->
+		<buttons>
+			<Button text="Guardar" width="auto" press="onSaverVariantEjec" type="Emphasized"/>
+			<Button text="Cancelar" width="auto" type="Reject" press="onCerrarVariantEjec"/>
+		</buttons>
+		<!-- sap.m.Button -->
+		<content>
+			<Input id="NombreVarEjec" placeholder="ID Variante Ejecución"/>
+			<Input id="TextVarEjec" placeholder="Texto Variante Ejecución"/>
+			<RadioButtonGroup width="100%" columns="2" selectedIndex="-1" id="__group0" buttons="{DFiltros>/}">
+				<buttons>
+					<RadioButton selected="{DFiltros>Selected}" groupName="__group0" text="{DFiltros>Text}"/></buttons>
+			</RadioButtonGroup>
+			<!--<List noDataText="Drop list items here" id="VariantListEjec" items="{DFiltros>/}" mode="MultiSelect" includeItemInSelection="true"-->
+			<!--	rememberSelections="false">-->
+			<!--	<items>-->
+			<!--		<StandardListItem type="Active" title="{DFiltros>Text}" selected="{DFiltros>Selected}"/></items>-->
+			<!--	<headerToolbar>-->
+			<!--		<Toolbar width="100%">-->
+			<!--			<content>-->
+			<!--				<Button width="auto" icon="sap-icon://multiselect-all" tooltip="Marcar / Desmarcar Todos" press="onSelectAllEjec"/>-->
+			<!--				<SearchField xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns="sap.m" width="100%" placeholder="Buscar" search="onSearchVariantEjec"/>-->
+			<!--			</content>-->
+			<!--		</Toolbar>-->
+			<!--	</headerToolbar>-->
+			<!--</List>-->
+		</content>
+	</Dialog>
+</core:FragmentDefinition>
