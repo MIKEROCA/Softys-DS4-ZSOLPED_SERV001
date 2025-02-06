@@ -390,96 +390,101 @@ sap.ui.define([
 			//	debugger;
 			//this.getRouter().getRoute("worklist").attachMatched(this._onRouteMatched, this);
 			var oRouter = this.getRouter();
-			this._oVSD = new sap.m.ViewSettingsDialog("vsd", {
-				confirm: function (oEvent) {
-					var oSortItem = oEvent.getParameter("sortItem");
-					this._oRouterArgs.query.sortField = oSortItem.getKey();
-					this._oRouterArgs.query.sortDescending = oEvent.getParameter("sortDescending");
-					oRouter.navTo("worklist", this._oRouterArgs, true /*without history*/ );
-				}.bind(this)
-			});
-			// init sorting (with simple sorters as custom data for all fields)
-			this._oVSD.addSortItem(new sap.m.ViewSettingsItem({
-				key: "preq_no",
-				text: "N° Pedido",
-				selected: true // by default the MockData is sorted by EmployeeID
-			}));
-			this._oVSD.addSortItem(new sap.m.ViewSettingsItem({
-				key: "preq_item",
-				text: "Pos. N° Ped.",
-				selected: false
-			}));
-			this._oVSD.addSortItem(new sap.m.ViewSettingsItem({
-				key: "material",
-				text: "Material",
-				selected: false
-			}));
-			this._oVSD.addSortItem(new sap.m.ViewSettingsItem({
-				key: "cantidad",
-				text: "Cantidad",
-				selected: false
-			}));
-			this._oVSD.addSortItem(new sap.m.ViewSettingsItem({
-				key: "descripcion",
-				text: "Descripción",
-				selected: false
-			}));
-			this._oVSD.addSortItem(new sap.m.ViewSettingsItem({
-				key: "grupo_compras",
-				text: "Grupo Compras",
-				selected: false
-			}));
-			this._oVSD.addSortItem(new sap.m.ViewSettingsItem({
-				key: "usuario",
-				text: "Creado por",
-				selected: false
-			}));
-			this._oVSD.addSortItem(new sap.m.ViewSettingsItem({
-				key: "solicitante",
-				text: "Solicitante",
-				selected: false
-			}));
-			this._oVSD.addSortItem(new sap.m.ViewSettingsItem({
-				key: "fecha_sol",
-				text: "Fecha Solicitid",
-				selected: false
-			}));
-			this._oVSD.addSortItem(new sap.m.ViewSettingsItem({
-				key: "centro",
-				text: "Centro",
-				selected: false
-			}));
-			this._oVSD.addSortItem(new sap.m.ViewSettingsItem({
-				key: "org_compras",
-				text: "Org. Compras",
-				selected: false
-			}));
-			this._oVSD.addSortItem(new sap.m.ViewSettingsItem({
-				key: "rel_cod",
-				text: "Grupo Lib.",
-				selected: false
-			}));
-			/*			this._oVSD.addSortItem(new sap.m.ViewSettingsItem({
-							key: "cod",
-							text: "C\xF3digo Liberaci\xF3n",
-							selected: false
-						}));*/
+			if (!sap.ui.getCore().byId("vsd")) {
+				this._oVSD = new sap.m.ViewSettingsDialog("vsd", {
+					confirm: function (oEvent) {
+						var oSortItem = oEvent.getParameter("sortItem");
+						this._oRouterArgs.query.sortField = oSortItem.getKey();
+						this._oRouterArgs.query.sortDescending = oEvent.getParameter("sortDescending");
+						oRouter.navTo("worklist", this._oRouterArgs, true /*without history*/ );
+					}.bind(this)
+				});
+				// init sorting (with simple sorters as custom data for all fields)
+				this._oVSD.addSortItem(new sap.m.ViewSettingsItem({
+					key: "preq_no",
+					text: "N° Pedido",
+					selected: true // by default the MockData is sorted by EmployeeID
+				}));
+				this._oVSD.addSortItem(new sap.m.ViewSettingsItem({
+					key: "preq_item",
+					text: "Pos. N° Ped.",
+					selected: false
+				}));
+				this._oVSD.addSortItem(new sap.m.ViewSettingsItem({
+					key: "material",
+					text: "Material",
+					selected: false
+				}));
+				this._oVSD.addSortItem(new sap.m.ViewSettingsItem({
+					key: "cantidad",
+					text: "Cantidad",
+					selected: false
+				}));
+				this._oVSD.addSortItem(new sap.m.ViewSettingsItem({
+					key: "descripcion",
+					text: "Descripción",
+					selected: false
+				}));
+				this._oVSD.addSortItem(new sap.m.ViewSettingsItem({
+					key: "grupo_compras",
+					text: "Grupo Compras",
+					selected: false
+				}));
+				this._oVSD.addSortItem(new sap.m.ViewSettingsItem({
+					key: "usuario",
+					text: "Creado por",
+					selected: false
+				}));
+				this._oVSD.addSortItem(new sap.m.ViewSettingsItem({
+					key: "solicitante",
+					text: "Solicitante",
+					selected: false
+				}));
+				this._oVSD.addSortItem(new sap.m.ViewSettingsItem({
+					key: "fecha_sol",
+					text: "Fecha Solicitid",
+					selected: false
+				}));
+				this._oVSD.addSortItem(new sap.m.ViewSettingsItem({
+					key: "centro",
+					text: "Centro",
+					selected: false
+				}));
+				this._oVSD.addSortItem(new sap.m.ViewSettingsItem({
+					key: "org_compras",
+					text: "Org. Compras",
+					selected: false
+				}));
+				this._oVSD.addSortItem(new sap.m.ViewSettingsItem({
+					key: "rel_cod",
+					text: "Grupo Lib.",
+					selected: false
+				}));
+				/*			this._oVSD.addSortItem(new sap.m.ViewSettingsItem({
+								key: "cod",
+								text: "C\xF3digo Liberaci\xF3n",
+								selected: false
+							}));*/
 
-			this._oVSD.addSortItem(new sap.m.ViewSettingsItem({
-				key: "rel_strat",
-				text: "Estrategia Liberación",
-				selected: false
-			}));
-			this._oVSD.addSortItem(new sap.m.ViewSettingsItem({
-				key: "provFijo",
-				text: "Prov.Fijo",
-				selected: false
-			}));
-			this._oVSD.addSortItem(new sap.m.ViewSettingsItem({
-				key: "provDeseado",
-				text: "Prov.Deseado",
-				selected: false
-			}));
+				this._oVSD.addSortItem(new sap.m.ViewSettingsItem({
+					key: "rel_strat",
+					text: "Estrategia Liberación",
+					selected: false
+				}));
+				this._oVSD.addSortItem(new sap.m.ViewSettingsItem({
+					key: "provFijo",
+					text: "Prov.Fijo",
+					selected: false
+				}));
+				this._oVSD.addSortItem(new sap.m.ViewSettingsItem({
+					key: "provDeseado",
+					text: "Prov.Deseado",
+					selected: false
+				}));
+		} else {
+			// Si ya existe se reutiliza
+			this._oVSD = sap.ui.getCore().byId("vsd");
+		  }			
 		},
 		/**
 		 * Applies sorting on our table control.
